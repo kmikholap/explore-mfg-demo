@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: explore-mfg-demo
+  namespace: explore-mfg-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: explore-mfg-demo
+  template:
+    metadata:
+      labels:
+        app: explore-mfg-demo
+    spec:
+      containers:
+      - name: explore-mfg-demo
+        image: kmikholap/explore-mfg-demo:latest
+        securityContext:
+          privileged: true
+          capabilities:
+            add: ["SYS_ADMIN"] 
+        volumeMounts:
+        - name: dri
+          mountPath: /dev/dri
+        - name: devdir
+          mountPath: /dev
+        - name: sysdir
+          mountPath: /sys
+      volumes:
+      - name: sysdir
+        hostPath:
+          path: /sys
+          type: Directory
+      - name: devdir
+        hostPath:
+          path: /dev
+          type: Directory
+      - name: dri
+        hostPath:
+          path: /dev/dri
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: explore-mfg-demo
+  namespace: explore-mfg-demo
+spec:
+  type: NodePort
+  ports:
+  - port: 2222
+    targetPort: 22
+    nodePort: 30222 
+    protocol: TCP
+    name: ssh
+  - port: 5000
+    targetPort: 80
+    nodePort: 30555 
+    protocol: TCP
+    name: app
+  selector:
+    app: explore-mfg-demo
