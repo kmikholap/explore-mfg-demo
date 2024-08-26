@@ -12,25 +12,25 @@ spec:
         - name: DEVICE_NAME
           valueFrom:
             configMapKeyRef:
-              name: explore-mfg-demo-map
+              name: las-vegas-config-map
               key: DEVICE_NAME
         - name: VIDEO_URL
           valueFrom:
             configMapKeyRef:
-              name: explore-mfg-demo-map
+              name: las-vegas-config-map
               key: VIDEO_URL
         - name: NODE_RED_DATA_URL
           valueFrom:
             configMapKeyRef:
-              name: explore-mfg-demo-map
+              name: las-vegas-config-map
               key: NODE_RED_DATA_URL
         - name: VERTICAL_LINES
           valueFrom:
             configMapKeyRef:
-              name: explore-mfg-demo-map
+              name: las-vegas-config-map
               key: VERTICAL_LINES
         - name: HORIZONTAL_LINES
           valueFrom:
             configMapKeyRef:
-              name: explore-mfg-demo-map
+              name: las-vegas-config-map
               key: HORIZONTAL_LINES

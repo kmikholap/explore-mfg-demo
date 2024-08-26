@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: explore-mfg-demo-map
+  name: chicago-config-map
   namespace: explore-mfg-demo
 
 data:
-  DEVICE_NAME: "GPU"
-  VIDEO_URL: "rtsp://demo:VMwareEdge@172.22.22.100/axis-media/media.amp?fps=30"
+  DEVICE_NAME: "CPU"
+  VIDEO_URL: "rtsp://172.22.22.222/axis-media/media.amp?fps=30"
   NODE_RED_DATA_URL: "http://192.168.0.5:1880/updateHBW"
   VERTICAL_LINES: "1300,1800"
   HORIZONTAL_LINES: "500,750"
